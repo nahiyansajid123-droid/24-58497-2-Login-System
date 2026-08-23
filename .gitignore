@@ -12,3 +12,4 @@
 # User-specific Visual Studio files
 *.user
 *.suo
+dbo.Table.sql
