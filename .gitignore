@@ -1,0 +1,14 @@
+# Visual Studio user and build output
+.vs/
+[Bb]in/
+[Oo]bj/
+.dotnet-cli/
+
+# Local Microsoft Access database files from the previous implementation
+*.mdb
+*.accdb
+*.ldb
+
+# User-specific Visual Studio files
+*.user
+*.suo
