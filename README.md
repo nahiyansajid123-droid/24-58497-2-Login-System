@@ -16,6 +16,8 @@ I added `database.sql`, which creates the `db_users` database and the `tbl_users
 
 The login and registration queries use `@username` and `@password` parameters. These parameters keep user input separate from the SQL command itself, which helps prevent SQL injection attacks.
 
+Passwords are stored as SHA-256 hashes instead of plain text. The application hashes a password before saving it and hashes the entered password before comparing it during login. Storing plain-text passwords is unsafe because anyone who obtains database access could directly read users' passwords.
+
 I also updated the application flow so that the program starts from the Login form. The Logout button on the Dashboard asks for confirmation and returns the user to the Login form instead of exiting the entire application.
 
 ## Features

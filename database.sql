@@ -18,9 +18,15 @@ BEGIN
 END
 GO
 
-IF NOT EXISTS (SELECT 1 FROM dbo.tbl_users WHERE username = N'admin')
+IF EXISTS (SELECT 1 FROM dbo.tbl_users WHERE username = N'admin' AND password = N'admin123')
+BEGIN
+    UPDATE dbo.tbl_users
+    SET password = N'240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9'
+    WHERE username = N'admin';
+END
+ELSE IF NOT EXISTS (SELECT 1 FROM dbo.tbl_users WHERE username = N'admin')
 BEGIN
     INSERT INTO dbo.tbl_users (username, password)
-    VALUES (N'admin', N'admin123');
+    VALUES (N'admin', N'240be518fabd2724ddb6f04eeb1da5967448d7e831c08c8fa822809f74c720a9');
 END
 GO

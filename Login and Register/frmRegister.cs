@@ -51,6 +51,7 @@ namespace Login_and_Register
                 return;
             }
 
+            string passwordHash = PasswordHasher.ComputeSha256Hash(password);
             const string userExists = "SELECT COUNT(*) FROM tbl_users WHERE username = @username";
             const string register = "INSERT INTO tbl_users (username, password) VALUES (@username, @password)";
 
@@ -72,7 +73,7 @@ namespace Login_and_Register
                     using (SqlCommand registerCommand = new SqlCommand(register, con))
                     {
                         registerCommand.Parameters.AddWithValue("@username", username);
-                        registerCommand.Parameters.AddWithValue("@password", password);
+                        registerCommand.Parameters.AddWithValue("@password", passwordHash);
                         registerCommand.ExecuteNonQuery();
                     }
                 }

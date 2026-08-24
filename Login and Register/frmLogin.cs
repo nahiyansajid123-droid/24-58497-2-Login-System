@@ -27,6 +27,7 @@ namespace Login_and_Register
                 return;
             }
 
+            string passwordHash = PasswordHasher.ComputeSha256Hash(password);
             const string login = "SELECT COUNT(*) FROM tbl_users WHERE username = @username AND password = @password";
 
             try
@@ -35,7 +36,7 @@ namespace Login_and_Register
                 using (SqlCommand cmd = new SqlCommand(login, con))
                 {
                     cmd.Parameters.AddWithValue("@username", username);
-                    cmd.Parameters.AddWithValue("@password", password);
+                    cmd.Parameters.AddWithValue("@password", passwordHash);
                     con.Open();
 
                     int matchingUsers = (int)cmd.ExecuteScalar();
